@@ -39,34 +39,42 @@ class TodoApp extends State<MyTodoApp> {
 
   Widget floatingActionButton() {
     String title, todoMsg;
-    Widget titleTextField = new TextField(
+    final Widget titleTextField = new TextField(
       onSubmitted: (String t) {
         title = t;
       },
       autofocus: true,
       decoration: new InputDecoration(
           labelText: 'Todo Title',
-          labelStyle: new TextStyle(
-              fontSize: 20.0, fontWeight: FontWeight.bold),
-              hintText: 'Complete Work'),
+          labelStyle:
+          new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          hintText: 'Complete Work'),
     );
 
-    Widget todoMsgTextField = new TextField(
+    final Widget todoMsgTextField = new TextField(
       onSubmitted: (String t) {
         todoMsg = t;
       },
       autofocus: true,
       decoration: new InputDecoration(
           labelText: 'Todo Details',
-          labelStyle: new TextStyle(
-              fontSize: 20.0, fontWeight: FontWeight.bold),
+          labelStyle:
+          new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           hintText: 'Have to be completed by next week'),
     );
 
+    final submitButton = new FlatButton(
+      onPressed: () {
+        Navigator.of(context).pop(context);
+        print(title + "Msg is " + todoMsg);
+      },
+      child: new Text("SUBMIT"),
+      padding: new EdgeInsets.all(15.0),
+    );
     final SimpleDialog simpleDialog = new SimpleDialog(
       title: new Text("Add Todo"),
-      contentPadding: new EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 25.0),
-      children: <Widget>[titleTextField,todoMsgTextField],
+      contentPadding: new EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 15.0),
+      children: <Widget>[titleTextField, todoMsgTextField, submitButton],
     );
 
     return new FloatingActionButton(
